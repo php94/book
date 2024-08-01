@@ -8,9 +8,9 @@
     <title>{$seo['title']??''}</title>
     <meta name="keywords" content="{$seo['keywords']??''}">
     <meta name="description" content="{$seo['description']??''}">
-    <script src="__ROOT__/static/jquery/jquery.min.js"></script>
-    <script src="__ROOT__/static/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="__ROOT__/static/bootstrap/css/bootstrap.min.css">
+    <script src="{echo $router->build('/php94/book/home/file', ['file'=>'jquery'])}"></script>
+    <script src="{echo $router->build('/php94/book/home/file', ['file'=>'bsjs'])}"></script>
+    <link href="{echo $router->build('/php94/book/home/file', ['file'=>'bscss'])}" rel="stylesheet">
     <style>
         html,
         body {

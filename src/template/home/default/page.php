@@ -12,7 +12,7 @@
         background-color: yellow;
     }
 </style>
-<script src="https://cdn.bootcdn.net/ajax/libs/mark.js/8.11.1/jquery.mark.min.js"></script>
+<script src="{echo $router->build('/php94/book/home/file', ['file'=>'markjs'])}"></script>
 <script>
     $(function() {
         $(".container").mark("{$request->get('q', '')}");
