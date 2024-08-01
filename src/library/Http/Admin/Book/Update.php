@@ -11,7 +11,7 @@ use PHP94\Help\Request;
 use PHP94\Form\Field\Picture;
 use PHP94\Form\Field\Radio;
 use PHP94\Form\Field\Radios;
-use PHP94\Form\Field\SimpleMDE;
+use PHP94\Form\Field\Summernote;
 use PHP94\Form\Field\Text;
 use PHP94\Form\Field\Textarea;
 use PHP94\Form\Form;
@@ -37,7 +37,8 @@ class Update extends Common
                         (new Text('简介', 'description')),
                     ),
                     (new Text('名称', 'name', $page['name'])),
-                    (new SimpleMDE('介绍', 'body', $page['body'])),
+                    (new Summernote('介绍', 'body', $page['body']))
+                        ->setUploadUrl(Router::build('/php94/admin/tool/upload')),
                     (new Picture('封面', 'cover', $page['cover']))
                         ->setUploadUrl(Router::build('/php94/admin/tool/upload')),
                     (new Picture('水印', 'water', $page['water']))

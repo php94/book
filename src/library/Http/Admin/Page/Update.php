@@ -12,7 +12,7 @@ use PHP94\Form\Field\SelectLevel;
 use PHP94\Help\Request;
 use PHP94\Form\Field\Radio;
 use PHP94\Form\Field\Radios;
-use PHP94\Form\Field\SimpleMDE;
+use PHP94\Form\Field\Summernote;
 use PHP94\Form\Field\Text;
 use PHP94\Form\Form;
 use PHP94\Form\Help\Summary;
@@ -48,7 +48,7 @@ class Update extends Common
                     (new Hidden('id', $page['id'])),
                     $xfield,
                     (new Text('标题', 'title', $page['title'])),
-                    (new SimpleMDE('内容', 'body', $page['body']))
+                    (new Summernote('内容', 'body', $page['body']))
                         ->setUploadUrl(Router::build('/php94/admin/tool/upload')),
                     (new Radios('是否发布', 'published', $page['published']))->addRadio(
                         new Radio('否', 0),

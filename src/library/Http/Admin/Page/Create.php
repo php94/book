@@ -11,7 +11,7 @@ use PHP94\Form\Field\Hidden;
 use PHP94\Form\Field\SelectLevel;
 use PHP94\Form\Field\Radio;
 use PHP94\Form\Field\Radios;
-use PHP94\Form\Field\SimpleMDE;
+use PHP94\Form\Field\Summernote;
 use PHP94\Form\Field\Text;
 use PHP94\Form\Form;
 use PHP94\Form\Help\Summary;
@@ -48,7 +48,7 @@ class Create extends Common
                     (new Hidden('book_id', $book['id'])),
                     $xfield,
                     (new Text('标题', 'title')),
-                    (new SimpleMDE('内容', 'body'))
+                    (new Summernote('内容', 'body'))
                         ->setUploadUrl(Router::build('/php94/admin/tool/upload')),
                     (new Radios('是否发布', 'published', 1))->addRadio(
                         new Radio('否', 0),

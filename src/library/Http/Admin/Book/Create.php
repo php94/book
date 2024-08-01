@@ -10,7 +10,7 @@ use PHP94\Facade\Router;
 use PHP94\Form\Field\Picture;
 use PHP94\Form\Field\Radio;
 use PHP94\Form\Field\Radios;
-use PHP94\Form\Field\SimpleMDE;
+use PHP94\Form\Field\Summernote;
 use PHP94\Form\Field\Text;
 use PHP94\Form\Field\Textarea;
 use PHP94\Form\Form;
@@ -34,7 +34,8 @@ class Create extends Common
                         (new Text('简介', 'description')),
                     ),
                     (new Text('名称', 'name')),
-                    (new SimpleMDE('介绍', 'body')),
+                    (new Summernote('介绍', 'body'))
+                        ->setUploadUrl(Router::build('/php94/admin/tool/upload')),
                     (new Picture('封面', 'cover'))
                         ->setUploadUrl(Router::build('/php94/admin/tool/upload')),
                     (new Picture('水印', 'water'))
