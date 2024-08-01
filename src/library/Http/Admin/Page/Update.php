@@ -12,6 +12,7 @@ use PHP94\Form\Field\SelectLevel;
 use PHP94\Help\Request;
 use PHP94\Form\Field\Radio;
 use PHP94\Form\Field\Radios;
+use PHP94\Form\Field\SimpleMDE;
 use PHP94\Form\Field\Summernote;
 use PHP94\Form\Field\Text;
 use PHP94\Form\Form;
@@ -49,7 +50,7 @@ class Update extends Common
             $editor = (new Summernote('内容', 'body', $page['body']))
                 ->setUploadUrl(Router::build('/php94/admin/tool/upload'));
         } else {
-            $editor = (new Summernote('内容', 'body', $page['body']))
+            $editor = (new SimpleMDE('内容', 'body', $page['body']))
                 ->setUploadUrl(Router::build('/php94/admin/tool/upload'));
         }
 

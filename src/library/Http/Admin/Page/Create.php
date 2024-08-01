@@ -11,6 +11,7 @@ use PHP94\Form\Field\Hidden;
 use PHP94\Form\Field\SelectLevel;
 use PHP94\Form\Field\Radio;
 use PHP94\Form\Field\Radios;
+use PHP94\Form\Field\SimpleMDE;
 use PHP94\Form\Field\Summernote;
 use PHP94\Form\Field\Text;
 use PHP94\Form\Form;
@@ -45,7 +46,7 @@ class Create extends Common
             $editor = (new Summernote('内容', 'body'))
                 ->setUploadUrl(Router::build('/php94/admin/tool/upload'));
         } else {
-            $editor = (new Summernote('内容', 'body'))
+            $editor = (new SimpleMDE('内容', 'body'))
                 ->setUploadUrl(Router::build('/php94/admin/tool/upload'));
         }
 
@@ -57,8 +58,6 @@ class Create extends Common
                     $xfield,
                     (new Text('标题', 'title')),
                     $editor,
-                    (new Summernote('内容', 'body'))
-                        ->setUploadUrl(Router::build('/php94/admin/tool/upload')),
                     (new Radios('是否发布', 'published', 1))->addRadio(
                         new Radio('否', 0),
                         new Radio('是', 1),
