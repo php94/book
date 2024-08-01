@@ -8,6 +8,7 @@ use PHP94\Facade\Db;
 use PHP94\Facade\Template;
 use PHP94\Help\Request;
 use PHP94\Help\Response;
+use Parsedown;
 
 class Page extends Common
 {
@@ -26,6 +27,11 @@ class Page extends Common
         if ($page['book_id'] != $book['id']) {
             return Response::error('页面不存在');
         }
+
+        if ($book['editor'] == 'simplemde') {
+            $page['body'] = (new Parsedown())->text($page['body']);
+        }
+
         return Template::render('home/' . ($book['theme'] ?: 'default') . '/page@php94/book', [
             'seo' => [
                 'title' => $page['title'] . ' - ' . $book['title'],

@@ -40,6 +40,10 @@ class Create extends Common
                         ->setUploadUrl(Router::build('/php94/admin/tool/upload')),
                     (new Picture('水印', 'water'))
                         ->setUploadUrl(Router::build('/php94/admin/tool/upload')),
+                    (new Radios('编辑器', 'editor', 'summernote'))->addRadio(
+                        new Radio('Summernote', 'summernote'),
+                        new Radio('SimpleMDE', 'simplemde'),
+                    ),
                     (new Text('主题', 'theme')),
                     (new Text('访问密码', 'password')),
                     (new Textarea('IP限制', 'ip')),
@@ -66,6 +70,7 @@ class Create extends Common
             'name' => Request::post('name'),
             'body' => Request::post('body'),
             'cover' => Request::post('cover'),
+            'editor' => Request::post('editor'),
             'water' => Request::post('water'),
             'theme' => Request::post('theme', 'default'),
             'password' => Request::post('password'),

@@ -28,6 +28,10 @@ class Update extends Common
             'id' => Request::get('id'),
         ]);
 
+        $book = Db::get('php94_book_book', '*', [
+            'id' => $page['book_id'],
+        ]);
+
         $pages = Db::select('php94_book_page', '*', [
             'book_id' => $page['book_id'],
             'ORDER' => [
@@ -41,6 +45,14 @@ class Update extends Common
             $xfield->addItem($vo['title'], $vo['id'], $vo['pid'] ?: '');
         }
 
+        if ($book['editor'] == 'summernote') {
+            $editor = (new Summernote('内容', 'body', $page['body']))
+                ->setUploadUrl(Router::build('/php94/admin/tool/upload'));
+        } else {
+            $editor = (new Summernote('内容', 'body', $page['body']))
+                ->setUploadUrl(Router::build('/php94/admin/tool/upload'));
+        }
+
         $form = new Form('更新页面');
         $form->addItem(
             (new Row())->addCol(
@@ -48,8 +60,7 @@ class Update extends Common
                     (new Hidden('id', $page['id'])),
                     $xfield,
                     (new Text('标题', 'title', $page['title'])),
-                    (new Summernote('内容', 'body', $page['body']))
-                        ->setUploadUrl(Router::build('/php94/admin/tool/upload')),
+                    $editor,
                     (new Radios('是否发布', 'published', $page['published']))->addRadio(
                         new Radio('否', 0),
                         new Radio('是', 1),

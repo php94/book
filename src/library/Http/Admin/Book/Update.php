@@ -24,33 +24,37 @@ class Update extends Common
 {
     public function get()
     {
-        $page = Db::get('php94_book_book', '*', [
+        $book = Db::get('php94_book_book', '*', [
             'id' => Request::get('id'),
         ]);
         $form = new Form('创建文档');
         $form->addItem(
             (new Row())->addCol(
                 (new Col('col-md-9'))->addItem(
-                    (new Text('标题', 'title', $page['title'])),
+                    (new Text('标题', 'title', $book['title'])),
                     (new Summary('SEO'))->addItem(
                         (new Text('关键词', 'keywords')),
                         (new Text('简介', 'description')),
                     ),
-                    (new Text('名称', 'name', $page['name'])),
-                    (new Summernote('介绍', 'body', $page['body']))
+                    (new Text('名称', 'name', $book['name'])),
+                    (new Summernote('介绍', 'body', $book['body']))
                         ->setUploadUrl(Router::build('/php94/admin/tool/upload')),
-                    (new Picture('封面', 'cover', $page['cover']))
+                    (new Picture('封面', 'cover', $book['cover']))
                         ->setUploadUrl(Router::build('/php94/admin/tool/upload')),
-                    (new Picture('水印', 'water', $page['water']))
+                    (new Picture('水印', 'water', $book['water']))
                         ->setUploadUrl(Router::build('/php94/admin/tool/upload')),
-                    (new Text('主题', 'theme', $page['theme'])),
-                    (new Text('访问密码', 'password', $page['password'])),
-                    (new Textarea('IP限制', 'ip', $page['ip'])),
-                    (new Radios('是否允许复制', 'copy', $page['copy']))->addRadio(
+                    (new Radios('编辑器', 'editor', $book['editor']))->addRadio(
+                        new Radio('Summernote', 'summernote'),
+                        new Radio('SimpleMDE', 'simplemde'),
+                    ),
+                    (new Text('主题', 'theme', $book['theme'])),
+                    (new Text('访问密码', 'password', $book['password'])),
+                    (new Textarea('IP限制', 'ip', $book['ip'])),
+                    (new Radios('是否允许复制', 'copy', $book['copy']))->addRadio(
                         new Radio('否', 0),
                         new Radio('是', 1),
                     ),
-                    (new Radios('是否发布', 'published', $page['published']))->addRadio(
+                    (new Radios('是否发布', 'published', $book['published']))->addRadio(
                         new Radio('否', 0),
                         new Radio('是', 1),
                     ),
@@ -76,6 +80,7 @@ class Update extends Common
             'body' => Request::post('body'),
             'cover' => Request::post('cover'),
             'water' => Request::post('water'),
+            'editor' => Request::post('editor', 'summernote'),
             'theme' => Request::post('theme', 'default'),
             'password' => Request::post('password'),
             'ip' => Request::post('ip'),

@@ -41,6 +41,14 @@ class Create extends Common
             $xfield->addItem($vo['title'], $vo['id'], $vo['pid'] ?: '');
         }
 
+        if ($book['editor'] == 'summernote') {
+            $editor = (new Summernote('内容', 'body'))
+                ->setUploadUrl(Router::build('/php94/admin/tool/upload'));
+        } else {
+            $editor = (new Summernote('内容', 'body'))
+                ->setUploadUrl(Router::build('/php94/admin/tool/upload'));
+        }
+
         $form = new Form('添加页面');
         $form->addItem(
             (new Row())->addCol(
@@ -48,6 +56,7 @@ class Create extends Common
                     (new Hidden('book_id', $book['id'])),
                     $xfield,
                     (new Text('标题', 'title')),
+                    $editor,
                     (new Summernote('内容', 'body'))
                         ->setUploadUrl(Router::build('/php94/admin/tool/upload')),
                     (new Radios('是否发布', 'published', 1))->addRadio(

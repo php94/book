@@ -8,6 +8,7 @@ use PHP94\Facade\Db;
 use PHP94\Facade\Template;
 use PHP94\Help\Request;
 use PHP94\Help\Response;
+use Parsedown;
 
 class Search extends Common
 {
@@ -23,15 +24,17 @@ class Search extends Common
         if (strlen($q)) {
             $searchs = Db::select('php94_book_page', '*', [
                 'book_id' => $book['id'],
-                'OR' => [
-                    'title[~]' => $q,
-                    'body[~]' => $q,
-                ],
                 'ORDER' => [
                     'rank' => 'DESC',
                     'id' => 'ASC',
                 ]
             ]);
+            if ($book['editor'] == 'simplemde') {
+                foreach ($searchs as &$value) {
+                    $value['body'] = (new Parsedown())->text($value['body']);
+                }
+                unset($value);
+            }
             foreach ($searchs as $k => $vo) {
                 if ((false === stripos($vo['title'], $q)) && (false === stripos(strip_tags($vo['body']), $q))) {
                     unset($searchs[$k]);

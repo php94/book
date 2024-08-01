@@ -2,11 +2,12 @@
     "name": "php94/book",
     "title": "文档系统",
     "description": "功能简单的文档系统",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "license": "GPL-3.0",
     "type": "php94",
     "require": {
-        "php94/admin": "^1.0"
+        "php94/admin": "^1.0",
+        "erusev/parsedown": "^1.7"
     },
     "autoload": {
         "psr-4": {

@@ -16,6 +16,7 @@ CREATE TABLE `prefix_php94_book_book` (
     `password` varchar(255) DEFAULT NULL,
     `cover` varchar(255) DEFAULT NULL,
     `water` varchar(255) DEFAULT NULL,
+    `editor` varchar(255) DEFAULT 'summernote',
     `copy` tinyint(3) unsigned DEFAULT '0',
     `ip` text,
     `theme` varchar(255) DEFAULT 'default',
@@ -44,5 +45,17 @@ DROP TABLE IF EXISTS `prefix_php94_book_book`;
 DROP TABLE IF EXISTS `prefix_php94_book_page`;
 str;
         Package::execSql($sql);
+    },
+    'update' => function (string $oldversion) {
+        $updates = [
+            '1.0.3' => function () {
+                Package::execSql('ALTER TABLE prefix_php94_book_book ADD COLUMN `editor` varchar(255) DEFAULT \'summernote\';');
+            }
+        ];
+        foreach ($updates as $version => $fn) {
+            if (version_compare($oldversion, $version, '<')) {
+                $fn();
+            }
+        }
     },
 ];
