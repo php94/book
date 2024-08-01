@@ -7,6 +7,7 @@ namespace App\Php94\Book\Http\Admin\Book;
 use App\Php94\Admin\Http\Common;
 use PHP94\Facade\Db;
 use PHP94\Facade\Router;
+use PHP94\Form\Field\Hidden;
 use PHP94\Help\Request;
 use PHP94\Form\Field\Picture;
 use PHP94\Form\Field\Radio;
@@ -31,6 +32,7 @@ class Update extends Common
         $form->addItem(
             (new Row())->addCol(
                 (new Col('col-md-9'))->addItem(
+                    (new Hidden('id', $book['id'])),
                     (new Text('标题', 'title', $book['title'])),
                     (new Summary('SEO'))->addItem(
                         (new Text('关键词', 'keywords')),
