@@ -41,7 +41,7 @@ class Update extends Common
             ]
         ]);
 
-        $xfield = new SelectLevel('上级页面', 'pid', $page['pid']);
+        $xfield = new SelectLevel('上级页面', 'pid', $page['pid'] ?: '');
         foreach ($pages as $vo) {
             $xfield->addItem($vo['title'], $vo['id'], $vo['pid'] ?: '');
         }
