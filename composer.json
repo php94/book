@@ -2,7 +2,7 @@
     "name": "php94/book",
     "title": "文档系统",
     "description": "功能简单的文档系统",
-    "version": "1.0.6",
+    "version": "1.0.7",
     "license": "GPL-3.0",
     "type": "php94",
     "require": {
