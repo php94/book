@@ -30,7 +30,7 @@
 
         pre {
             background: #000;
-            color: #fff;
+            color: #a9a9a9;
             padding: 10px;
         }
     </style>
