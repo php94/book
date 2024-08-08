@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Php94\Book\Http\Home;
 
-use PHP94\Facade\Db;
-use PHP94\Facade\Router;
-use PHP94\Facade\Session;
-use PHP94\Facade\Template;
-use PHP94\Help\Request;
-use PHP94\Help\Response;
+use PHP94\Db;
+use PHP94\Router;
+use PHP94\Session;
+use PHP94\Template;
+use PHP94\Request;
+use PHP94\Response;
 
 class Auth extends Common
 {

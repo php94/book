@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace App\Php94\Book\Http\Admin\Book;
 
 use App\Php94\Admin\Http\Common;
-use PHP94\Facade\Db;
-use PHP94\Facade\Router;
+use PHP94\Db;
+use PHP94\Router;
 use PHP94\Form\Field\Hidden;
-use PHP94\Help\Request;
+use PHP94\Request;
 use PHP94\Form\Field\Picture;
 use PHP94\Form\Field\Radio;
 use PHP94\Form\Field\Radios;
@@ -19,7 +19,7 @@ use PHP94\Form\Form;
 use PHP94\Form\Help\Summary;
 use PHP94\Form\Layout\Col;
 use PHP94\Form\Layout\Row;
-use PHP94\Help\Response;
+use PHP94\Response;
 
 class Update extends Common
 {
