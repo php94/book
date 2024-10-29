@@ -1,10 +1,8 @@
 <?php
-
+// 安装脚本文件
 use PHP94\Package;
 
-return [
-    'install' => function () {
-        $sql = <<<'str'
+$sql = <<<'str'
 DROP TABLE IF EXISTS `prefix_php94_book_book`;
 CREATE TABLE `prefix_php94_book_book` (
     `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -37,25 +35,5 @@ CREATE TABLE `prefix_php94_book_page` (
     PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
 str;
-        Package::execSql($sql);
-    },
-    'unInstall' => function () {
-        $sql = <<<'str'
-DROP TABLE IF EXISTS `prefix_php94_book_book`;
-DROP TABLE IF EXISTS `prefix_php94_book_page`;
-str;
-        Package::execSql($sql);
-    },
-    'update' => function (string $oldversion) {
-        $updates = [
-            '1.0.3' => function () {
-                Package::execSql('ALTER TABLE prefix_php94_book_book ADD COLUMN `editor` varchar(255) DEFAULT \'summernote\';');
-            }
-        ];
-        foreach ($updates as $version => $fn) {
-            if (version_compare($oldversion, $version, '<')) {
-                $fn();
-            }
-        }
-    },
-];
+
+Package::execSql($sql);
