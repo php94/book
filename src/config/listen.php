@@ -3,7 +3,7 @@
 use App\Php94\Admin\Model\Menu;
 use App\Php94\Book\Http\Home\Common;
 use App\Php94\Book\Middleware\AuthMiddleware;
-use PHP94\Handler\Handler;
+use PHP94\Handler;
 use PHP94\Request;
 use App\Php94\Book\Http\Admin\Book\Index;
 
